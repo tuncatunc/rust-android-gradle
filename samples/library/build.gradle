@@ -36,9 +36,9 @@ android {
 }
 
 cargo {
-    module = "../rust"
-    targets = ["x86_64", "arm64"]
-    libname = "rust"
+    module = "../leaf"
+    targets = ["arm64"]
+    libname = "leaf-bin"
 
     features {
         defaultAnd "foo", "bar"

@@ -38,9 +38,9 @@ android {
 }
 
 cargo {
-    module = "../rust"
-    targets = ["x86_64", "linux-x86-64"] // "x86", "x86_64", "arm64"]
-    libname = "rust"
+    module = "../leaf"
+    targets = ["arm64"]
+    libname = "leaf"
 }
 
 repositories {

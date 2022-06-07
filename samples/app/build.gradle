@@ -26,6 +26,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        
+        ndk {
+            // Specifies the ABI configurations of your native
+            // libraries Gradle should build and package with your app.
+            abiFilters 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -36,9 +42,9 @@ android {
 }
 
 cargo {
-    module = "../rust"
-    targets = ["x86_64", "arm64"]
-    libname = "rust"
+    module = "../leaf/leaf-ffi"
+    targets = ["arm64"]
+    libname = "leafffi"
 }
 
 repositories {

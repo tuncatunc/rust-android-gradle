@@ -7,7 +7,7 @@ authors = ["Nick Alexander <nalexander@mozilla.com>"]
 jni = "0.5.2"
 
 [lib]
-crate_type = ["staticlib", "dylib"]
+crate_type = ["dylib"]
 
 [features]
 default = ["foo"]
