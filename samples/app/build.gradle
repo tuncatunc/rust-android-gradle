@@ -43,7 +43,7 @@ android {
 
 cargo {
     module = "../leaf/leaf-ffi"
-    targets = ["arm64"]
+    targets = ["arm", 'arm64']
     libname = "leafffi"
 }
 
@@ -70,5 +70,11 @@ afterEvaluate {
         }
         def buildType = "${variant.buildType.name.capitalize()}"
         tasks["generate${productFlavor}${buildType}Assets"].dependsOn(tasks["cargoBuild"])
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if ((task.name == 'javaPreCompileDebug' || task.name == 'javaPreCompileRelease')) {
+        task.dependsOn 'cargoBuild'
     }
 }

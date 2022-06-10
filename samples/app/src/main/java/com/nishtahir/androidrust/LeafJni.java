@@ -2,8 +2,7 @@ package com.nishtahir.androidrust;
 
 public class LeafJni {
 
-  // public static native int Java_com_nishtahir_androidrust_LeafJni_leaf_1run_1with_1options(
-  private static native int leaf_run_with_options(
+  private static native int leafRunWithOptions(
     short rt_id,
     String config_path,
     boolean auto_reload,
@@ -13,25 +12,27 @@ public class LeafJni {
     int stack_size
   );
 
-  private static native int leaf_run(
+  private static native int leafRun(
     short rt_id, 
     String config_path
   );
 
-  private static native int leaf_run_with_config_string(
+  private static native int hello();
+
+  private static native int leafRunWithConfigString(
     short rt_id, 
     String config_path
   );
 
-  private static native int leaf_reload(
+  private static native int leafReload(
     short rt_id
   );
 
-  private static native int leaf_shutdown(
+  private static native int leafShutdown(
     short rt_id
   );
 
-  private static native int leaf_test_config(
+  private static native int leafTestConfig(
     String config_path
   );
 
@@ -39,8 +40,15 @@ public class LeafJni {
     System.loadLibrary("leafffi");
 
     try {
+      int status = hello();
+    } catch (UnsatisfiedLinkError unsatisfiedLinkError) {
+      System.out.println(
+              "UnsatisfiedLinkError: " + unsatisfiedLinkError.getMessage()
+      );
+    }
+    try {
       int status;
-      status = leaf_run((short) 1, "config.toml");
+      status = leafRun((short) 1, "config.toml");
       System.out.println("leaf_run successfully" + status);
     } catch (UnsatisfiedLinkError unsatisfiedLinkError) {
       System.out.println(
@@ -51,7 +59,7 @@ public class LeafJni {
     try {
       int status;
       status =
-        leaf_run_with_options(
+      leafRunWithOptions(
           (short) 1,
           "config.toml",
           false,
@@ -69,7 +77,7 @@ public class LeafJni {
 
     try {
       int status;
-      status = leaf_run_with_config_string((short) 1, "config.toml");
+      status = leafRunWithConfigString((short) 1, "config.toml");
       System.out.println("leaf_run_with_config_string successfully" + status);
     } catch (UnsatisfiedLinkError unsatisfiedLinkError) {
       System.out.println(
@@ -79,7 +87,7 @@ public class LeafJni {
 
     try {
       int status;
-      status = leaf_reload((short) 1);
+      status = leafReload((short) 1);
       System.out.println("leaf_reload successfully" + status);
     } catch (UnsatisfiedLinkError unsatisfiedLinkError) {
       System.out.println(
@@ -89,7 +97,7 @@ public class LeafJni {
 
     try {
       int status;
-      status = leaf_shutdown((short) 1);
+      status = leafShutdown((short) 1);
       System.out.println("leaf_shutdown successfully" + status);
     } catch (UnsatisfiedLinkError unsatisfiedLinkError) {
       System.out.println(
@@ -99,7 +107,7 @@ public class LeafJni {
 
     try {
       int status;
-      status = leaf_test_config("config.toml");
+      status = leafTestConfig("config.toml");
       System.out.println("leaf_test_config successfully" + status);
     } catch (UnsatisfiedLinkError unsatisfiedLinkError) {
       System.out.println(
